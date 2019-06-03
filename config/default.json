@@ -1,0 +1,19 @@
+{
+    "server": {
+        "name": "node-server-api",
+        "version": "1.0.0",
+        "running": true
+    },  
+    "logger": {
+        "console": {
+            "level": "debug"
+        },
+        "file": {
+            "level": "error",
+            "path": "./node-server-api.log"
+        },
+        "elasticsearch": {
+            "indexPrefix": "node-server-api"
+        }
+    }
+}

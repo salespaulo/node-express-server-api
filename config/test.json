@@ -1,0 +1,14 @@
+{
+    "logger": {
+        "console": {
+            "level": "error"
+        },
+        "file": {
+            "level": "debug",
+            "path": "./test-node-server-api.log"
+        },
+        "elasticsearch": {
+            "indexPrefix": "test-node-server-api"
+        }
+    }
+}
