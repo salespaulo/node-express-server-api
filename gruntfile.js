@@ -175,7 +175,7 @@ module.exports = function (grunt) {
   grunt.registerTask('dev',     ['test', 'env:dev', 'notify:success', 'concurrent'])
   grunt.registerTask('prod',    ['env:production', 'compile', 'notify:success', 'concurrent'])
 
-  grunt.registerTask('default', ['env:dev', 'test', 'notify:success', 'shell:exec'])
+  grunt.registerTask('default', ['test', 'env:dev', 'notify:success', 'shell:exec'])
 
   grunt.registerTask('zip',   ['test', 'compress', 'notify:zip'])
   grunt.registerTask('deploy',   ['zip', 'shell:publish', 'notify:publish'])
