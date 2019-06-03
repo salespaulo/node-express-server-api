@@ -1,5 +1,5 @@
 {
-  "name": "server-api",
+  "name": "node-express-server-api",
   "version": "0.0.1",
   "description": "Um Super Server em NodeJs",
   "main": "index.js",
