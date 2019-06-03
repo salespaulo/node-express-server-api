@@ -18,9 +18,10 @@ const helmet = require('helmet')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 
-// TODO paulosales: Implementar uma funcao geral para procurar os process.env no config
+const _config = config.has('server') ? config.get('server'): _unknown
+
 const DEFAULT_PORT = '4000'
-process.env.PORT = process.env.PORT || DEFAULT_PORT
+process.env.PORT = _config.port || process.env.PORT || DEFAULT_PORT
 
 const _unknown = {
     name: 'unknown'
@@ -34,8 +35,6 @@ const _env = () => {
         profile: process.env.NODE_ENV
     }
 }
-
-const _config = config.has('server') ? config.get('server'): _unknown
 
 const setHeaders = () => (_req, res, next) => {
     res.setHeader('node-server-api-version', _config.version)

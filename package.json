@@ -1,6 +1,6 @@
 {
   "name": "node-express-server-api",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Um Super Server em NodeJs",
   "main": "index.js",
   "scripts": {
