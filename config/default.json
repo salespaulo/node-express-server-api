@@ -1,6 +1,6 @@
 {
     "server": {
-        "name": "node-server-api",
+        "name": "node-express-server-api",
         "version": "1.0.0",
         "running": true
     },  
@@ -10,10 +10,10 @@
         },
         "file": {
             "level": "error",
-            "path": "./node-server-api.log"
+            "path": "./node-express-server-api.log"
         },
         "elasticsearch": {
-            "indexPrefix": "node-server-api"
+            "indexPrefix": "node-express-server-api"
         }
     }
 }

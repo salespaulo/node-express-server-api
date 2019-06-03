@@ -1,5 +1,6 @@
 'use strict'
 
+var config = require('config')
 var path = require('path')
 
 module.exports = function (grunt) {
@@ -13,31 +14,31 @@ module.exports = function (grunt) {
   var notify = {
     compile: {
       options: {
-        title  : 'node-server-api: Compile',
+        title  : config.server.name + ': Compile',
         message: 'Finished!'
       }
     },
     test: {
       options: {
-        title  : 'node-server-api: Test',
+        title  : config.server.name + ': Test',
         message: 'Finished!'
       }
     },
     zip: {
       options: {
-        title  : 'node-server-api: ZIP target',
+        title  : config.server.name + ': ZIP target',
         message: 'Ziped OK!'
       }
     },
     publish: {
       options: {
-        title  : 'node-server-api: Publish',
+        title  : config.server.name + ': Publish',
         message: 'Published OK!'
       }
     },
     success: {
       options: {
-        title  : 'node-server-api: Success',
+        title  : config.server.name + ': Success',
         message: '## Already! ##'
       }
     }
@@ -143,13 +144,11 @@ module.exports = function (grunt) {
       test : {
         NODE_ENV : 'test',
       },
-      local : {
-        NODE_ENV : 'localhost-development',
-      },
       production : {
         NODE_ENV : 'production',
       }
     },
+    config: config,
     notify: notify,
     compress: compress,
     shell: shell,
