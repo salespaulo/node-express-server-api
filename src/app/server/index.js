@@ -5,9 +5,6 @@
  * configurado a partir de uma instancia de 
  * {Http} da API Nodejs.
  */
-const logger = require('../log')
-const { merge, inspect, option } = require('../utils')
-
 const ip = require('ip')
 const config = require('config')
 const moment = require('moment')
@@ -18,14 +15,20 @@ const helmet = require('helmet')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 
-const _config = config.has('server') ? config.get('server'): _unknown
-
-const DEFAULT_PORT = '4000'
-process.env.PORT = _config.port || process.env.PORT || DEFAULT_PORT
+const logger = require('../log')
+const { merge, inspect, option } = require('../utils')
 
 const _unknown = {
     name: 'unknown'
 }
+
+const DEFAULT_PORT = '4000'
+const opts = config.has('server') ? config.get('server') : _unknown
+
+process.env.PORT = process.env.PORT == undefined
+        ? (opts.port == undefined ? DEFAULT_PORT : opts.port)
+        : process.env.PORT
+
 
 const _env = () => {
     return {
@@ -37,7 +40,7 @@ const _env = () => {
 }
 
 const setHeaders = () => (_req, res, next) => {
-    res.setHeader('node-server-api-version', _config.version)
+    res.setHeader('node-server-api-version', opts.version)
     next()
 }
 
@@ -53,7 +56,13 @@ const listen = server => {
 
 const mixinEnv = server => merge(server, { env: _env() })
 
-const mixinInfo = server => merge(server, { info: _config })
+const mixinInfo = server => merge(server, { 
+        info: {
+            name: opts.name,
+            version: opts.version,
+            running: opts.running
+        }
+    })
 
 const start = server => {
     server = mixinEnv(mixinInfo(listen(server)))
@@ -76,6 +85,6 @@ const server = httpServer => option(httpServer)
     })))
 
 module.exports = { 
-    DEFAULT_PORT,
+    opts,
     server
 }

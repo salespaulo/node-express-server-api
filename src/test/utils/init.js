@@ -1,5 +1,5 @@
-process.env.NODE_ENV = 'test'
-process.env.PORT= '3999'
+
+process.env.PORT = '3999'
 
 const server = require('../../')
 

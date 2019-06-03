@@ -5,11 +5,8 @@ const express = require('express')
 
 const api = require('./api')
 const logger = require('./log')
-const { server } = require('./server')
+const { server, opts } = require('./server')
 const { inspect } = require('./utils')
-
-/** NODE_ENV - Default */
-process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
 /** Catch Uncaught Exception */
 process.on('uncaughtException', (err) => { 
@@ -26,3 +23,4 @@ const init = () => {
 
 /** Exports Server API  */
 module.exports = server(init()).map(api)
+module.exports.opts = opts

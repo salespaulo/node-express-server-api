@@ -106,7 +106,7 @@ module.exports = function (grunt) {
   var watch = {
     js: {
       files: [ '<%= paths.app %>/**/*.js', path.join(path.resolve(), '/src', '/test', '/**/*.js') ],
-      tasks: ['copy', 'mochaTest', 'notify:compile']
+      tasks: ['copy', 'env:test', 'mochaTest', 'env:dev', 'notify:compile']
     }
   }
 
@@ -145,13 +145,13 @@ module.exports = function (grunt) {
     pkg: grunt.file.readJSON('package.json'),
     env : {
       dev : {
-        NODE_ENV : 'development',
+        NODE_ENV : 'development'
       },
       test : {
-        NODE_ENV : 'test',
+        NODE_ENV : 'test'
       },
       production : {
-        NODE_ENV : 'production',
+        NODE_ENV : 'production'
       }
     },
     config: config,
@@ -170,9 +170,9 @@ module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt)
 
   grunt.registerTask('compile', ['clean', 'copy', 'notify:compile'])
-  grunt.registerTask('test',    ['compile', 'mochaTest', 'notify:test'])
+  grunt.registerTask('test',    ['env:test', 'compile', 'mochaTest', 'notify:test'])
 
-  grunt.registerTask('dev',     ['env:dev', 'test', 'notify:success', 'concurrent'])
+  grunt.registerTask('dev',     ['test', 'env:dev', 'notify:success', 'concurrent'])
   grunt.registerTask('prod',    ['env:production', 'compile', 'notify:success', 'concurrent'])
 
   grunt.registerTask('default', ['env:dev', 'test', 'notify:success', 'shell:exec'])

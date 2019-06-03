@@ -1,7 +1,4 @@
 {
-    "server": {
-        "port": "3999"
-    },
     "logger": {
         "console": {
             "level": "error"
