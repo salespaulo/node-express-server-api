@@ -75,11 +75,11 @@ module.exports = function (grunt) {
       src: '**/*.json',
       dest: path.join('<%= paths.target %>', '/config', '/')
     },
-    favicon: {
+    readme: {
       expand: true,
-      cwd: path.join('<%= paths.app %>', '/'),
-      src: '**/favicon.ico',
-      dest: path.join('<%= paths.target %>', '/static')
+      cwd: path.resolve(),
+      src: 'README.MD',
+      dest: path.join('<%= paths.target %>', '/')
     }
   }
 
