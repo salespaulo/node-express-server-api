@@ -2,7 +2,6 @@
  * Módulo que exporta a biblioteca
  */
 const express = require('express')
-const config = require('config')
 
 const api = require('./api')
 const logger = require('./log')
@@ -21,10 +20,7 @@ process.on('uncaughtException', (err) => {
 
 /** Init Server Method */
 const init = () => {
-    logger.debug(`Server Init Config NODE_ENV: ${ process.env.NODE_ENV }`)
-    logger.debug(`Server Init Config Logger: ${ inspect(config.logger) }`)
-    logger.debug(`Server Init Config Server: ${ inspect(config.server) }`)
-    
+    logger.debug(`Server Init in NODE_ENV: ${ process.env.NODE_ENV }`)
     return express()
 }
 

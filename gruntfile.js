@@ -64,6 +64,12 @@ module.exports = function (grunt) {
       src: '**/*.js',
       dest: path.join('<%= paths.target %>', '/')
     },
+    test: {
+      expand: true,
+      cwd: path.join(path.resolve(), '/', 'src', 'test'),
+      src: '**/*.js',
+      dest: path.join('<%= paths.target %>', '/test')
+    },
     npm: {
       expand: true,
       cwd: path.resolve(),
@@ -88,7 +94,7 @@ module.exports = function (grunt) {
     test: {
       options: {
         reporter: 'spec',
-        captureFile: 'results.txt',
+        captureFile: 'test-results.txt',
         quiet: false,
         clearRequireCache: false,
         noFail: false
@@ -171,6 +177,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', ['env:dev', 'test', 'notify:success', 'shell:exec'])
 
-  grunt.registerTask('zip',   ['compile', 'compress', 'notify:zip'])
+  grunt.registerTask('zip',   ['test', 'compress', 'notify:zip'])
   grunt.registerTask('deploy',   ['zip', 'shell:publish', 'notify:publish'])
 }

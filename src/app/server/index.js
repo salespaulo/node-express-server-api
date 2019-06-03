@@ -44,9 +44,9 @@ const setHeaders = () => (_req, res, next) => {
 
 const listen = server => {
     const instance = server.listen(process.env.PORT, () => {
-        logger.info(`[Server Listen]: Address: ${ip.address()}:${process.env.PORT} startup: ${moment().toISOString()}`)
-        logger.info(`[Server Info]: ${inspect(server.info)}`)
         logger.info(`[Server Env]: ${inspect(server.env)}`)
+        logger.info(`[Server Info]: ${inspect(server.info)}`)
+        logger.info(`[Server Listen]: Address: ${ip.address()}:${process.env.PORT} startup: ${moment().toISOString()}`)
     })
 
     return merge(server, { instance: instance })
@@ -60,8 +60,6 @@ const start = server => {
     server = mixinEnv(mixinInfo(listen(server)))
 
     logger.silly(`Server: ${inspect(server)}`)
-    logger.debug(`Server Config: ${inspect(server.env)}`)
-
     return server
 }
 

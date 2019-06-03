@@ -7,12 +7,12 @@ const config = require('config')
 
 const { IS_ENV_PROD, merge } = require('../utils')
 
-const FILE_LEVEL = config.logger.file.level
-const FILE_NAME = config.logger.file.path
-const CONSOLE_LEVEL = config.logger.console.level
+const FILE_LEVEL = config.has('logger.file.level') ? config.get('logger.file.level') : 'info'
+const FILE_NAME = config.has('logger.file.path') ? config.get('logger.file.path'): '/tmp/node-express-server-api.log'
+const CONSOLE_LEVEL = config.has('logger.console.level') ? config.get('logger.console.level') : 'info'
 
 const ELASTICSEARCH_URL = process.env.ELASTICSEARCH_URL || null
-const ELASTICSEARCH_INDEXPREFIX = config.logger.elasticsearch.indexPrefix || 'node-server-api'
+const ELASTICSEARCH_INDEXPREFIX = config.has('logger.elasticsearch.indexPrefix') ? config.get('logger.elasticsearch.indexPrefix') : 'node-express-server-api'
 
 const elasticsearch = () => {
     const Elasticsearch = require('winston-elasticsearch')
