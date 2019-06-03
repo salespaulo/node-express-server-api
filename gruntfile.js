@@ -105,7 +105,7 @@ module.exports = function (grunt) {
 
   var watch = {
     js: {
-      files: [ '<%= paths.app %>/**/*.js' ],
+      files: [ '<%= paths.app %>/**/*.js', path.join(path.resolve(), '/src', '/test', '/**/*.js') ],
       tasks: ['copy', 'mochaTest', 'notify:compile']
     }
   }
