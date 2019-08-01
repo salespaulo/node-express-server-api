@@ -1,68 +1,68 @@
 {
-  "name": "node-express-server-api",
-  "version": "0.0.9",
-  "description": "Um Super Server em NodeJs",
-  "main": "index.js",
-  "scripts": {
-    "start": "pm2 start target/index.js --name node-server-api",
-    "compile": "grunt compile",
-    "test": "grunt test",
-    "dev": "grunt dev",
-    "prod": "grunt prod",
-    "deploy": "grunt deploy"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/salespaulo/node-server-api.git"
-  },
-  "keywords": [
-    "nodejs",
-    "expressjs",
-    "node",
-    "express",
-    "http",
-    "server",
-    "api"
-  ],
-  "author": "Paulo R. A. Sales",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/salespaulo/node-server-api/issues"
-  },
-  "homepage": "https://github.com/salespaulo/node-server-api#readme",
-  "dependencies": {
-    "ip": "*",
-    "config": "*",
-    "option-js": "*",
-    "moment": "*",
-    "winston": "*",
-    "winston-elasticsearch": "*",
-    "morgan": "*",
-    "express": "*",
-    "cors": "*",
-    "errorhandler": "*",
-    "helmet": "*",
-    "body-parser": "*",
-    "cookie-parser": "*"
-  },
-  "devDependencies": {
-    "path": "*",
-    "chai": "*",
-    "chai-http": "*",
-    "mocha": "*",
-    "nodemon": "*",
-    "standard": "*",
-    "load-grunt-tasks": "*",
-    "grunt": "*",
-    "grunt-env": "*",
-    "grunt-shell": "*",
-    "grunt-notify": "*",
-    "grunt-nodemon": "*",
-    "grunt-concurrent": "*",
-    "grunt-mocha-test": "*",
-    "grunt-contrib-clean": "*",
-    "grunt-contrib-copy": "*",
-    "grunt-contrib-watch": "*",
-    "grunt-contrib-compress": "*"
-  }
+    "name": "node-express-server-api",
+    "version": "0.1.0",
+    "description": "Um Super Server em NodeJs",
+    "main": "index.js",
+    "scripts": {
+        "start": "pm2 start target/index.js --name node-server-api",
+        "compile": "grunt compile",
+        "test": "grunt test",
+        "dev": "grunt dev",
+        "prod": "grunt prod",
+        "deploy": "grunt deploy"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/salespaulo/node-server-api.git"
+    },
+    "keywords": [
+        "nodejs",
+        "expressjs",
+        "node",
+        "express",
+        "http",
+        "server",
+        "api"
+    ],
+    "author": "Paulo R. A. Sales",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/salespaulo/node-server-api/issues"
+    },
+    "homepage": "https://github.com/salespaulo/node-server-api#readme",
+    "dependencies": {
+        "ip": "*",
+        "config": "*",
+        "option-js": "*",
+        "moment": "*",
+        "winston": "*",
+        "winston-elasticsearch": "*",
+        "morgan": "*",
+        "express": "*",
+        "cors": "*",
+        "errorhandler": "*",
+        "helmet": "*",
+        "body-parser": "*",
+        "cookie-parser": "*"
+    },
+    "devDependencies": {
+        "path": "*",
+        "chai": "*",
+        "chai-http": "*",
+        "mocha": "*",
+        "nodemon": "*",
+        "standard": "*",
+        "load-grunt-tasks": "*",
+        "grunt": "*",
+        "grunt-env": "*",
+        "grunt-shell": "*",
+        "grunt-notify": "*",
+        "grunt-nodemon": "*",
+        "grunt-concurrent": "*",
+        "grunt-mocha-test": "*",
+        "grunt-contrib-clean": "*",
+        "grunt-contrib-copy": "*",
+        "grunt-contrib-watch": "*",
+        "grunt-contrib-compress": "*"
+    }
 }
