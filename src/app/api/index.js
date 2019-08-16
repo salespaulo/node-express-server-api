@@ -6,7 +6,7 @@ const supportApi = require('./resources/api-support')
 
 module.exports = server => {
 
-    logger.info('[Server API]: Route setup: /support')
+    logger.debug('[Server API]: Route setup: /support')
     supportApi(server)
 
     return server
