@@ -22,5 +22,5 @@ const init = () => {
 }
 
 /** Exports Server API  */
-module.exports = server(init()).map(api)
+module.exports = () => server(init()).map(api)
 module.exports.opts = opts
