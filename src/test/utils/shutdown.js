@@ -1,7 +1,5 @@
-
-const { opts } = require('../../')
+'use strict'
 
 module.exports = app => {
     app.instance.close()
-    process.env.PORT = opts.port
 }

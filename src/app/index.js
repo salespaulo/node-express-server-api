@@ -5,15 +5,7 @@ const express = require('express')
 
 const api = require('./api')
 const logger = require('./log')
-const { server, opts } = require('./server')
-const { inspect } = require('./utils')
-
-/** Catch Uncaught Exception */
-// process.on('uncaughtException', (err) => {
-//     logger.error(':: UNCAUGHT EXCEPTION ::');
-//     logger.error(`[Inside 'uncaughtException' event]: stack: ${inspect(err.stack)} || ${err.message}`);
-//     process.exit(1)
-// })
+const server = require('./server')
 
 /** Init Server Method */
 const init = () => {
@@ -22,5 +14,4 @@ const init = () => {
 }
 
 /** Exports Server API  */
-module.exports = () => server(init()).map(api)
-module.exports.opts = opts
+module.exports = (config = false) => server(init(), config).map(api)

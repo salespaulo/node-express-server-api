@@ -22,24 +22,7 @@ const _unknown = {
     name: 'unknown'
 }
 
-const DEFAULT_PORT = '4000'
 const opts = config.has('server') ? config.get('server') : _unknown
-
-process.env.PORT =
-    process.env.PORT == undefined
-        ? opts.port == undefined
-            ? DEFAULT_PORT
-            : opts.port
-        : process.env.PORT
-
-const _env = () => {
-    return {
-        ip: ip.address(),
-        user: process.env.USER,
-        port: process.env.PORT,
-        profile: process.env.NODE_ENV
-    }
-}
 
 const setHeaders = () => (_req, res, next) => {
     if (opts.headers) {
@@ -48,6 +31,35 @@ const setHeaders = () => (_req, res, next) => {
 
     res.setHeader('node-server-api-version', opts.version)
     next()
+}
+
+const _env = (config = false) => {
+    if (config) {
+        process.env.PORT = process.env.PORT || config.port
+    }
+
+    return {
+        ip: ip.address(),
+        user: process.env.USER,
+        port: process.env.PORT,
+        profile: process.env.NODE_ENV
+    }
+}
+
+const _info = (config = false) => {
+    if (config) {
+        return {
+            name: config.name,
+            version: config.version,
+            running: config.running
+        }
+    }
+
+    return {
+        name: opts.name,
+        version: opts.version,
+        running: opts.running
+    }
 }
 
 const listen = server => {
@@ -64,27 +76,18 @@ const listen = server => {
     return merge(server, { instance: instance })
 }
 
-const mixinEnv = server => merge(server, { env: _env() })
-
-const mixinInfo = server =>
-    merge(server, {
-        info: {
-            name: opts.name,
-            version: opts.version,
-            running: opts.running
-        }
-    })
-
-const start = server => {
-    server = mixinEnv(mixinInfo(listen(server)))
+const start = (server, config) => {
+    server = merge(server, { env: _env(config) })
+    server = merge(server, { info: _info(config) })
+    server = listen(server)
 
     logger.silly(`Server: ${inspect(server)}`)
     return server
 }
 
-const server = httpServer =>
+const server = (httpServer, config = false) =>
     option(httpServer)
-        .map(server => start(server))
+        .map(server => start(server, config))
         .map(server => server.use(error()))
         .map(server => server.use(cors()))
         .map(server => server.use(helmet()))
@@ -100,7 +103,4 @@ const server = httpServer =>
             )
         )
 
-module.exports = {
-    opts,
-    server
-}
+module.exports = server
