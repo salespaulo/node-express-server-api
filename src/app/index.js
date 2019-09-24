@@ -2,9 +2,9 @@
  * Módulo que exporta a biblioteca
  */
 const express = require('express')
+const logger = require('node-winston-logging')
 
 const api = require('./api')
-const logger = require('./log')
 const server = require('./server')
 
 /** Init Server Method */

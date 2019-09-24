@@ -1,14 +1,14 @@
 /**
  * API RESOURCES - index.ts
- * 
+ *
  * Exporta uma interface de Api,
  * todos os endpoints da api devem
  * implementar esta interface.
  */
-const logger = require('../../log')
-const { inspect } = require('../../utils')
+const logger = require('node-winston-logging')
+const { inspect } = require('node-config-utils/objects')
 
-const catchError = (res) => {
+const catchError = res => {
     return e => {
         const error = e || 'Internal Server Error - 500'
         let msg = 'Error: '
@@ -18,7 +18,11 @@ const catchError = (res) => {
             const res = error.response
             const conn = error.request.connection
 
-            msg += `Server respond response.status=${res.status}-${res.statusText}; response.data=${inspect(res.data)}; request.path=${req.path}; request.connection=${conn.localAddress}:${conn.localPort}`
+            msg += `Server respond response.status=${res.status}-${
+                res.statusText
+            }; response.data=${inspect(res.data)}; request.path=${req.path}; request.connection=${
+                conn.localAddress
+            }:${conn.localPort}`
         } else if (error.request) {
             const req = error.request
             const conn = req.connection
@@ -39,12 +43,9 @@ const catchNotFoundError = (resource, id, res) => {
         {
             type: 'not_found',
             field: 'id',
-            message: `${ resource } ${ id } not found!`
+            message: `${resource} ${id} not found!`
         }
     ])
 }
 
-export {
-    catchError,
-    catchNotFoundError
-}
+export { catchError, catchNotFoundError }
