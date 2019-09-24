@@ -79,12 +79,12 @@ const _info = (config = false) => {
 }
 
 const listen = server => {
-    const instance = server.listen(process.env.PORT, () => {
+    const instance = server.listen(server.env.port, () => {
         logger.debug(`[Server Env]: ${inspect(server.env)}`)
         logger.debug(`[Server Info]: ${inspect(server.info)}`)
         logger.info(
             `[Server Listen]: Address: ${ip.address()}:${
-                process.env.PORT
+                server.env.port
             } startup: ${moment().toISOString()}`
         )
     })
