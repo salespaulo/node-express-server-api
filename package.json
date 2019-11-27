@@ -1,8 +1,9 @@
 {
     "name": "node-express-server-api",
-    "version": "0.1.7",
+    "version": "0.1.8",
     "description": "Um Super Server Express",
     "main": "index.js",
+    "prettier": "intelligir-prettier-config",
     "scripts": {
         "start": "pm2 start target/index.js --name node-server-api",
         "compile": "grunt compile",
@@ -31,17 +32,18 @@
     },
     "homepage": "https://github.com/salespaulo/node-server-api#readme",
     "dependencies": {
-        "node-config-utils": "0.0.9",
-        "node-winston-logging": "0.0.1",
-        "express": "*",
-        "option-js": "1.0.0",
-        "ip": "*",
-        "moment": "*",
+        "body-parser": "*",
+        "cookie-parser": "*",
         "cors": "*",
         "errorhandler": "*",
+        "express": "*",
         "helmet": "*",
-        "body-parser": "*",
-        "cookie-parser": "*"
+        "intelligir-prettier-config": "0.0.1",
+        "ip": "*",
+        "moment": "*",
+        "node-config-utils": "0.0.9",
+        "node-winston-logging": "0.0.1",
+        "option-js": "1.0.0"
     },
     "devDependencies": {
         "path": "*",

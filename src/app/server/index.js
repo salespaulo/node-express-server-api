@@ -19,8 +19,6 @@ const cookieParser = require('cookie-parser')
 
 const _unknown = {
     name: 'unknown',
-    port: 3100,
-    version: '1.0.0'
 }
 
 const opts = config.has('server') ? config.get('server') : _unknown
@@ -30,11 +28,13 @@ const setHeaders = config => (_req, res, next) => {
         if (config.headers) {
             res.set(config.headers)
         }
+
         res.setHeader('node-server-api-version', config.version || opts.version)
-    } else if (opts.headers) {
+    } else {
         if (opts.headers) {
             res.set(opts.headers)
         }
+
         res.setHeader('node-server-api-version', opts.version)
     }
 
@@ -58,7 +58,7 @@ const _env = (config = false) => {
         ip: ip.address(),
         user,
         port,
-        environment
+        environment,
     }
 }
 
@@ -67,14 +67,14 @@ const _info = (config = false) => {
         return {
             name: config.name,
             version: config.version,
-            running: config.running
+            running: config.running,
         }
     }
 
     return {
         name: opts.name,
         version: opts.version,
-        running: opts.running
+        running: opts.running,
     }
 }
 
@@ -85,7 +85,7 @@ const listen = server => {
         logger.info(
             `[Server Listen]: Address: ${ip.address()}:${
                 server.env.port
-            } startup: ${moment().toISOString()}`
+            } startup: ${moment().toISOString()}`,
         )
     })
 
@@ -114,9 +114,9 @@ const server = (httpServer, config = false) =>
         .map(server =>
             server.use(
                 bodyParser.urlencoded({
-                    extended: true
-                })
-            )
+                    extended: true,
+                }),
+            ),
         )
 
 module.exports = server
