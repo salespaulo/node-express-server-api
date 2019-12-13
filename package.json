@@ -1,6 +1,6 @@
 {
     "name": "node-express-server-api",
-    "version": "0.1.8",
+    "version": "0.1.9",
     "description": "Um Super Server Express",
     "main": "index.js",
     "prettier": "intelligir-prettier-config",
