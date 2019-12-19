@@ -109,12 +109,20 @@ const server = (httpServer, config = false) =>
         .map(server => server.use(helmet()))
         .map(server => server.use(cookieParser()))
         .map(server => server.use(logger.morgan()))
-        .map(server => server.use(bodyParser.json({ limit: '50mb', extended: true })))
+        .map(server =>
+            server.use(
+                bodyParser.json({
+                    limit: '50mb',
+                    extended: true,
+                }),
+            ),
+        )
         .map(server => server.use(setHeaders(config)))
         .map(server =>
             server.use(
                 bodyParser.urlencoded({
                     extended: true,
+                    limit: '10mb',
                 }),
             ),
         )
